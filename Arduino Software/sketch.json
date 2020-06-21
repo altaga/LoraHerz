@@ -1,0 +1,9 @@
+{
+  "cpu": {
+    "fqbn": "arduino:samd:mkrwan1300",
+    "name": "Arduino MKR WAN 1300",
+    "type": "serial"
+  },
+  "secrets": [],
+  "included_libs": []
+}
