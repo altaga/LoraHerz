@@ -31,11 +31,11 @@ I will create a Post-hospital monitoring system based on communication Lora, for
 
 # Solution
 
-<img src="Solucion" width="1000">
+<img src="https://i.ibb.co/7X5ggQR/20200620-152247.jpg" width="1000">
 
 With this solution the patient will be able to track their recovery and a web app to see their progress, the doctor could have a database of their patients which can be made public to developers and doctors around the world by generating a public API. With AWS and also in the future with a lot of data, perform an AI that is capable of determining the recovery status of a patient using that data.
 
-<img src="Solucion" width="1000">
+<img src="https://i.ibb.co/gZ7pr1G/20200623-215406.jpg" width="1000">
  
 I use the Thunderboard Sense 2 to obtain all the environmental data from the multiple sensors it has and serve as a tracking of the patient's environment in their recovery, in order to rule out variables such as the weather to measure the patient's recovery
 
@@ -70,30 +70,67 @@ Software:
 
  <img src="https://i.ibb.co/Sdby94j/diagram.png" width="1000">
 
-# Kit Assemble:
+Arduino Circuit Diagram:
 
-- Kit Elements:
+ <img src="https://i.ibb.co/mJ0P2ry/Sketch-bb.png" width="1000">
 
-<img src="https://i.ibb.co/CVkGvtW/20200609-002859.jpg" width="1000">
+# Assemble:
 
-- Connect the Kit.
+- Assemble the circuit elements:
 
-<img src="https://i.ibb.co/W6p3ZpP/20200609-002950.jpg" width="1000">
+<img src="https://i.ibb.co/tpgBcxK/20200620-152306.jpg" width="1000">
 
 - Put all in a case.
 
-<img src="https://i.ibb.co/gJrrtx1/20200609-003442.jpg" width="1000">
+<img src="https://i.ibb.co/7X5ggQR/20200620-152247.jpg" width="1000">
 
-- Pycom Gateway:
+Correct electrodes position:
 
-<img src="https://i.ibb.co/FgGCXsH/20200609-003404.jpg" width="1000">
-<img src="https://i.ibb.co/XxL85ZT/20200609-003412.jpg" width="1000">
+<img src="https://i.ibb.co/HFQ4Rfh/Diagrama1.png" width="1000">
 
-# Create Helium Account:
+# Create Arduino Create Account:
 
-El primer paso es crear una cuenta en la console de helium, este proceso nos servira para obtener las crecenciales que pondremos en nuestro kit mas adelante.
+El primer paso es crear una cuenta en la Arduino Create, este proceso nos servira para poder flashear nuestro Arduino MKR 1300 con el software correcto.
 
-https://console.helium.com/
+https://create.arduino.cc/
+
+Despues de ya tener nuestra cuenta, abriremos el siguiente enlace al codigo 1 que les preporcionare, este nos permitira obtener el DevEUI de nuestra board, este numero es necesario para poder consumir los servicios de LoraWAN de The Things Network (TTN).
+
+<iframe src=https://create.arduino.cc/example/library/mkrwan_1_0_12/mkrwan_1_0_12%5Cexamples%5CFirstConfiguration/FirstConfiguration/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Nos vamos a la pestaña de Devices para crear las credenciales de nuestro primer device.
 
