@@ -78,15 +78,15 @@ Arduino Circuit Diagram:
 
 - Assemble the circuit elements:
 
-<img src="https://i.ibb.co/tpgBcxK/20200620-152306.jpg" width="1000">
+<img src="https://i.ibb.co/mzWwgCH/20200620-152306.jpg" width="1000">
 
 - Put all in a case.
 
-<img src="https://i.ibb.co/7X5ggQR/20200620-152247.jpg" width="1000">
+<img src="https://i.ibb.co/m0Zgz05/20200620-152247.jpg" width="1000">
 
 Correct electrodes position:
 
-<img src="https://i.ibb.co/HFQ4Rfh/Diagrama1.png" width="1000">
+<img src="https://i.ibb.co/JtRCF0T/Diagrama1.png" width="1000">
 
 # Create Arduino Create Account:
 
@@ -96,7 +96,8 @@ https://create.arduino.cc/
 
 Despues de ya tener nuestra cuenta, abriremos el siguiente enlace al codigo 1 que les preporcionare, este nos permitira obtener el DevEUI de nuestra board, este numero es necesario para poder consumir los servicios de LoraWAN de The Things Network (TTN).
 
-<iframe src=https://create.arduino.cc/example/library/mkrwan_1_0_12/mkrwan_1_0_12%5Cexamples%5CFirstConfiguration/FirstConfiguration/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
+https://create.arduino.cc/example/library/mkrwan_1_0_12/mkrwan_1_0_12%5Cexamples%5CFirstConfiguration/FirstConfiguration/preview
+
 
 
 
