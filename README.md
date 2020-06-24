@@ -11,25 +11,29 @@ I will create a Post-hospital monitoring system based on communication Lora, for
 
 <img src="https://i.ibb.co/d5WZpp7/image.png" width="1000">
 
-# Table of contents
+# Table of contents:
 * [Introduction](#introduction)
 * [Solution](#solution)
 * [Materials](#materials)
 * [Connection Diagram](#connection-diagram)
-* [Kit Assemble](#kit-assemble)
-* [Create Helium Account](#create-helium-account)
-* [Kit Setup](#kit-setup)
-* [Miner Creation](#miner-creation)
-* [Pycom Setup](#pycom-setup)
-* [Gateway Setup](#gateway-setup)
-* [AWS IoT Setup](#aws-iot-setup)
-* [AWS Services](#aws-services)
+* [Assemble](#assemble)
+* [Arduino Create Setup](#arduino-create-setup)
+* [TTN Setup](#ttn-setup)
+* [Arduino MKR Setup](#arduino-mkr-setup)
+* [AWS Setup](#aws-setup)
+* [TTN Integration](#ttn-integration)
 * [IoT Things](#iot-things)
+* [Thunderboard Setup](#thunderboard-setup)
+* [RaspberryPi Setup](#raspberrypi-setup)
 * [Node-Red Setup](#node-red-setup)
 * [Product](#product)
 * [Demo](#demo)
 
-# Solution
+# Introduction:
+
+I create a Post-hospital monitoring system based on communication Lora, for patients who suffered Covid-19 (but can be adapted to any disease afterwards), the solution will track the patient's heart rate using an ECG sensor (Arduino compatible Module: https://sharvielectronics.com/product/max30100-pulse-oximeter-heart-rate-sensor-module/) in order to be able to measure your total recovery from the disease and avoid a relapse. It has been shown that worldwide those with pre-existing conditions such as cardiac disease are the ones with more risk.
+
+# Solution:
 
 <img src="https://i.ibb.co/PFt6CLT/20200620-152247.jpg" width="1000">
 
@@ -88,13 +92,13 @@ Correct electrodes position:
 
 <img src="https://i.ibb.co/JtRCF0T/Diagrama1.png" width="1000">
 
-# Arduino Create Account:
+# Arduino Create Setup:
 
 El primer paso es crear una cuenta en la Arduino Create, este proceso nos servira para poder flashear nuestro Arduino MKR 1300 con el software correcto.
 
 https://create.arduino.cc/
 
-# Obtain the DevEUI:
+## Obtain the DevEUI:
 
 Despues de ya tener nuestra cuenta, abriremos el siguiente enlace al codigo 1 que les preporcionare, este nos permitira obtener el DevEUI de nuestra board, este numero es necesario para poder consumir los servicios de LoraWAN de The Things Network (TTN).
 
@@ -106,7 +110,7 @@ Podemos ver como el codigo nos muestra el DevEUI que necesitamos:
 
 Antes de poder empezar a mandar informacion por Lora, tenemos que crear una cuenta en la red de TTN.
 
-# TTN:
+# TTN Setup:
 
 Creamos una cuenta en TTN.
 
@@ -145,7 +149,7 @@ EL ultimo numero que nececitamos es la AppKey que nos entregara la plataforma.
 
 Ya que tenemos esos 3 numeros, podemos pasar a configurar nuestro Arduino MKR 1300 para mandar datos a la red de TTN.
 
-# Arduino MKR Credentials Setup:
+# Arduino MKR Setup:
 
 Ya con la AppEUI y la AppKEY abriremos el siguiente codigo en Arduino Create y pegaremos nuestro nuestras credenciales.
 
@@ -159,7 +163,7 @@ Haz funcionar todo el sistema y obtendras lo siguiente en la plataforma de TTN.
 
 <img src="https://i.ibb.co/p18RSbt/image.png" width="1000">
 
-# TTN to AWS
+# TTN to AWS:
 
 Ya que los valores llegan a la plataforma de TTN, deberemos enviar los datos a AWSIoT, esto se puede realizar de 2 formas, oficialmente TTN tiene una guia de como hacer este proceso, pero les mostrare una segunda forma de hacerlo.
 
