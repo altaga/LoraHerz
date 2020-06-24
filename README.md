@@ -88,182 +88,88 @@ Correct electrodes position:
 
 <img src="https://i.ibb.co/JtRCF0T/Diagrama1.png" width="1000">
 
-# Create Arduino Create Account:
+# Arduino Create Account:
 
 El primer paso es crear una cuenta en la Arduino Create, este proceso nos servira para poder flashear nuestro Arduino MKR 1300 con el software correcto.
 
 https://create.arduino.cc/
 
+# Obtain the DevEUI:
+
 Despues de ya tener nuestra cuenta, abriremos el siguiente enlace al codigo 1 que les preporcionare, este nos permitira obtener el DevEUI de nuestra board, este numero es necesario para poder consumir los servicios de LoraWAN de The Things Network (TTN).
 
 https://create.arduino.cc/example/library/mkrwan_1_0_12/mkrwan_1_0_12%5Cexamples%5CFirstConfiguration/FirstConfiguration/preview
 
+Podemos ver como el codigo nos muestra el DevEUI que necesitamos:
 
+<img src="https://i.ibb.co/m6bGKsg/image.png" width="1000">
 
+Antes de poder empezar a mandar informacion por Lora, tenemos que crear una cuenta en la red de TTN.
 
+# TTN:
 
+Creamos una cuenta en TTN.
 
+https://www.thethingsnetwork.org/
 
+Una vez creada la cuenta entramos a la consola para crear nuestra primera aplicacion.
 
+NOTA: las aplicaciones sirven para asociar los devices en grupos y sobre ellas implementar integraciones como lo son AWSIoT o API.
 
+https://console.thethingsnetwork.org/
 
+Primero le damos a crear una a App.
 
+<img src="https://i.ibb.co/1RcQwGx/image.png" width="1000">
+<img src="https://i.ibb.co/vzVbJvh/image.png" width="1000">
 
+La configuracion variara segun la region del mundo en la que te encuentres, en este caso yo vine a Aveiro, Portugal a desarrollar mi proyecto ya que en Mexico no hay una buena infraestructura de LoraWAN.
 
+<img src="https://i.ibb.co/5G4MttW/image.png" width="1000">
 
+Ahora obtenemos la AppEUI, esta nos servira mas adelante.
 
+<img src="https://i.ibb.co/ZdVPWtd/image.png" width="1000">
 
+Registraremos un nuevo device:
 
+<img src="https://i.ibb.co/6nbdsXR/image.png" width="1000">
 
+Al registrar el device deberemos poner el Device EUI que obtuvimos en la consola de Arduino.
 
+<img src="https://i.ibb.co/s34WS5z/image.png" width="1000">
 
+EL ultimo numero que nececitamos es la AppKey que nos entregara la plataforma.
 
+<img src="https://i.ibb.co/n04zhcX/image.png" width="1000">
 
+Ya que tenemos esos 3 numeros, podemos pasar a configurar nuestro Arduino MKR 1300 para mandar datos a la red de TTN.
 
+# Arduino MKR Credentials Setup:
 
+Ya con la AppEUI y la AppKEY abriremos el siguiente codigo en Arduino Create y pegaremos nuestro nuestras credenciales.
 
+https://create.arduino.cc/editor/Altaga/c0f3d3a8-daef-440e-8d9c-3abeb6229670/preview
 
+Pega tus credenciales aqui.
 
+<img src="https://i.ibb.co/mJTQ1gd/image.png" width="1000">
 
+Haz funcionar todo el sistema y obtendras lo siguiente en la plataforma de TTN.
 
+<img src="https://i.ibb.co/p18RSbt/image.png" width="1000">
 
+# TTN to AWS
 
+Ya que los valores llegan a la plataforma de TTN, deberemos enviar los datos a AWSIoT, esto se puede realizar de 2 formas, oficialmente TTN tiene una guia de como hacer este proceso, pero les mostrare una segunda forma de hacerlo.
 
+TTN official Guide: https://www.thethingsnetwork.org/docs/applications/aws/
 
+En nuestro caso preferimos utilizar el siguiente esquema de conexion.
 
+<img src="https://i.ibb.co/L1QgtWr/TTN-AWS-Node-Red.png" width="1000">
 
-
-Nos vamos a la pestaña de Devices para crear las credenciales de nuestro primer device.
-
-<img src="https://i.ibb.co/wCZMnB0/image.png" width="1000">
-
-Dentro de la plataforma crearemos un device para obtener las credenciales de conexion.
-
-<img src="https://i.ibb.co/2v5NPtN/image.png" width="1000">
-
-Guardamos estos valores para la configuracion de nuestro device.
-
-# Kit Setup:
-
-Toda la guia para programar el kit con Arduino IDE esta en la guia oficial de helium.
-
-https://developer.helium.com/devices/arduino-quickstart/st-discovery-lrwan1
-
-Una vez hayamos terminado exitosamente la guia de helium pasarmos a descargar y abrir el documento en la carpeta "ArduinoIDE" y abrirlo.
-
-<img src="https://i.ibb.co/v3y8zcy/image.png" width="1000">
-
-Añade las siguientes librerias:
-
-<img src="https://i.ibb.co/xLtZsFh/image.png" width="400">
-<img src="https://i.ibb.co/RYW8gdD/image.png" width="400">
-
-Ahora pondremos las credenciales que obtuvimos en la Helium Console.
-
-<img src="https://i.ibb.co/jTs5QWD/image.png" width="400">
-
-Si todo sale bien, deberias de poder flashear el codigo en el kit.
-
-**En el caso de que estes en una zona dentro del coverage de Helium, haz click [here](#checkpoint)**
-
-Revisa el Coverage en tu region.
-https://network.helium.com/coverage
-
-# Miner Creation:
-
-En este caso la creacion de un minero en AWS esta detallada perfectamente en la documentacion oficial e Helium.
-
-https://developer.helium.com/blockchain/run-your-own-miner
-
-Los unicos datos que necesitaremos en este caso luego de hacer funcionar el minero sera la IPv4 Public IP:
-
-<img src="https://i.ibb.co/xL7m3Kv/image.png" width="1000">
-
-Al minero se le genera un nombre pseudo-aleatorio en el caso de nuestro Miner obtuvimos el siguiente nombre.
-
-<img src="https://i.ibb.co/rMqT8Dg/image.png" width="1000">
-
-# Pycom Setup:
-
-La configuracion del Gateway la realizamos con una Fipy de la marca Pycom.
-
-https://pycom.io/product/fipy/
-
-Para poder configurarla correctamente, tenemos que seguir primero la guia oficial para configurarla y activarla en su plataforma Pybytes.
-
-https://docs.pycom.io/gettingstarted/
-
-Recomiendo leerla a detalle ya que la board tambien tiene muchisimas aplicaciones mas.
-
-# Gateway Setup:
-
-Nota: en nuestro caso usamos la extension de Pymakr en Visual Studio Code.
-
-https://docs.pycom.io/pymakr/installation/vscode/
-
-Una vez terminada la seccion anterior deberemos descargar la carpeta llamada "Pycom Helium Gateway".
-
-<img src="https://i.ibb.co/wW9c18s/image.png" width="1000">
-
-Abrimos con VS code la carpeta para poder empezar a editar la configuracion de la gateway.
-
-<img src="https://i.ibb.co/gZN7h4d/image.png" width="1000">
-
-Tenemos que configurar los siguientes parametros dentro de nuestro archivo de config.py
-
-<img src="https://i.ibb.co/PN1d6rS/image.png" width="1000">
-
-Estas son las constantes que pondremos en nuestro codigo para que la conexion con el minero funcione correctamente.
-
-    Server = IPv4 Public IP from EC2 Miner
-    Port   = 1680 (Helium Miner Port) 
-
-    NTP = "pool.ntp.org"
-    NTP_PERIOD_S = 3600
-
-    WIFI_SSID = 'YOUR_SSID'
-    WIFI_PASS = 'YOURPASS'
-
-    LORA_FREQUENCY = 904300000
-    LORA_GW_DR = "SF7BW125" # DR_0
-    LORA_NODE_DR = 0
-
-Si todo funciona correctamente debera de ver los push y los pull de la gateway con el minero.
-
-En la consola de Pycom.
-
-<img src="https://i.ibb.co/r7fNrLg/Message.png" width="1000">
-
-En la consola de el Kit.
-
-<img src="https://i.ibb.co/TtHf4Qw/image.png" width="1000">
-
-    {"UTC":[2,44,2],"Lat":19.24,"Lon":99.9,"Alt":2234.74,"Hum":37.20,"Press":777.72,"Temp":29.02,"Acc":[9,0,1026],"Gyro":[-1190,210,140],"Mag":[-111,87,-750]}
-
-###### Checkpoint:
-
-En la consola de Helium deberemos de ver como llegan los datos:
-
-<img src="https://i.ibb.co/Js3KC2r/Data.png" width="1000">
-<img src="https://i.ibb.co/TB3dYR9/image.png" width="1000">
-
-Ya que los datos estan llegando a la consola de Helium, es hora de configurar que lleguen a AWS IoT core.
-
-# AWS IoT Setup:
-
-La configuracion de AWS IoT esta muy bien explicada en la documentacion oficial de Helium.
-
-https://developer.helium.com/console/integrations/awsiotcore
-
-Ya que tenemos configurado el servicio, guardaremos el topic que utilizamos para mandar los datos a AWS para poder utilizarlo despues.
-
-<img src="https://i.ibb.co/r4zRY9p/image.png" width="1000">
-
-Cada vez que se recibe un dato en AWS veremos lo siguiente.
-
-<img src="https://i.ibb.co/LQgKWSj/image.png" width="1000"> Insertar imagen
-
-# AWS Services:
+# AWS setup:
 
 AWS works through roles, these roles are credentials that we create so that the services can communicate with each other, in order to carry out all our integration we need to create a role that allows the effective transmission of all services, therefore that will be the first thing To make.
 
@@ -285,7 +191,7 @@ Note: always start here when doing a project with AWS.
 
 - Press next till review.
 
-<img src="https://i.ibb.co/f22SfJ0/image.png" width="1000">
+<img src="https://i.ibb.co/dL8mF47/image.png" width="1000">
 
 - Now we have to add the additional permissions to the Role, in the roles tab enter the role we just created and press the Attach policies button.
 
@@ -293,110 +199,84 @@ Note: always start here when doing a project with AWS.
 
 - Inside policies add the following:
 
-  - AmazonDynamoDBFullAccess
+  - AmazonIoTFullAccess
 
-<img src="https://i.ibb.co/7r0KcNJ/image.png" width="1000">
+- Once that is finished, now we can start configuring the AWS Lambda but before this we need the AWS IoT Core Endopoint.
 
-- Once that is finished, now we can start configuring the Rule within AWS IoT Core.
+## AWS IoT Endpoint:
 
-## DynamoDB
+- First we have to access our AWS console y look for the IoT core service:
 
-Once we receive the data to our AWS IoT Core, we will configure the Rules to connect the following services.
+<img src="https://i.ibb.co/KVbtQLR/image.png" width="600">
 
-<img src="https://i.ibb.co/zhzZXGh/Create.png" width="1000">
+- Obtain your AWS endpoint, save it because we will use it to setup the Lambda and the Node-RED.
 
-- Set any name for the Rule.
-
-<img src="https://i.ibb.co/Rj05MW5/image.png" width="1000">
-
-- In the SQL Query we will place our topic.
-
-<img src="https://i.ibb.co/7t4jfSg/image.png" width="1000">
-
-- The first rule we are going to create will be to save all the data in a DynamoDB.
-
-<img src="https://i.ibb.co/nRm3WNy/image.png" width="1000">
-
-- Press "Create a new resource" to create the table where we will save the data.
-
-<img src="https://i.ibb.co/Hn4TYS2/image.png" width="1000">
-
-- For our table we will use the following parameters, I suggest that you use these specifically, since at production level all the device numbers will be different and in the "Time" column we are going to implement a special TIMESTAMP function.
-
-<img src="https://i.ibb.co/ZWR8GcG/image.png" width="1000">
-
-The Sort Key value special function in the sortkey setup is:
-
-    ${parse_time("yyyy.MM.dd G 'at' HH:mm:ss z", timestamp() )}
-
-- Once this is finished, we will have finished the first rule. In this case, because the rule for the lambda uses a different SQL query, we will no longer add any more actions to this rule.
+<img src="https://i.ibb.co/ZYwrdfR/image.png" width="600">
 
 ## Lambda:
 
-- To create a new rule but using the following SQL Query.
-
-<img src="https://i.ibb.co/7t4jfSg/image.png" width="1000">
-
-- We will add to this rule the following action:
-
-<img src="https://i.ibb.co/n3H5576/image.png" width="1000">
-
-- Press the "Create a new Lambda Function" button:
-
-<img src="https://i.ibb.co/5sLHqy2/image.png" width="1000">
-
 - We configure the lambda in the following way and create it:
 
-<img src="https://i.ibb.co/68j2BXJ/image.png" width="1000">
+<img src="https://i.ibb.co/LNXXY7c/image.png" width="1000">
 
-- Once the lambda has been created we go down to the Execution role section and press the View the YOURROLE button on the IAM console to be able to add the SNS police to the SMS:
-
-<img src="https://i.ibb.co/K9QRFc4/image.png" width="1000">
-
-- We add the SNS service  
-    - AmazonSNSFullAccess 
+- Once the lambda has been created we go down to the Execution role section and press the View the YOUR_ROLE button on the IAM console to be able to send the data from AWS Gateway to AWS IoT Core:
 
 <img src="https://i.ibb.co/xJV8jxX/image.png" width="1000">
 
-- Once that is finished, we select the lambda in our rule to finish configuring the lambda trigger.
+- Once that is finished, we select the lambda in our rule to finish configuring the lambda.
 
 <img src="https://i.ibb.co/zh8Fq0C/image.png" width="1000">
 
-- Before programming the Lambda we will have to configure the SMS service through SNS.
+- El codigo que vamos a ejecutar esta en la carpeta de "Lambda Code" lo tenemos que pegar en la lambda y modificar los siguiente parametros.
 
-<img src="https://i.ibb.co/RbjHG8c/image.png" width="1000">
+<img src="https://i.ibb.co/F7rZt8y/image.png" width="1000">
 
-- Press the "Create Topic" button to create our message service.
+Pega tu endpoint en el codigo y coloca el Topic que consideres conveniente para mandar la informacion al IoT Core.
 
-<img src="https://i.ibb.co/fNhCPfh/image.png" width="1000">
+## API Gateway:
 
-- Give the Topic a title and create it.
+Ya que tenemos nuestra lambda creada, es hora de crear nuestro endpoint de AWS Gateway para mandar la informacion desde TTN.
 
-<img src="https://i.ibb.co/YDZXHC5/image.png" width="1000">
+<img src="https://i.ibb.co/JjLGZv5/image.png" width="1000">
 
-- Save the ARN number, since we are going to need it to configure the lambda.
+Dentro del servicio le presionamos el boton de crear.
 
-<img src="https://i.ibb.co/NpBxLj1/image.png" width="1000">
+<img src="https://i.ibb.co/tLz4CGR/image.png" width="1000">
 
-- Click "Create subscription".
+- En nuestro caso usaremos una HTTP API, hay muchas formas de configurarla pero esta es la mas sencilla a nuestro punto de vista.
 
-<img src="https://i.ibb.co/bvdLmBW/image.png" width="1000">
+<img src="https://i.ibb.co/4Td0nBZ/image.png" width="1000">
 
-- Select as "Protocol" SMS and in Endpoint put your cell number (International dialing).
+La configuracion de la API Gateway sera la siguiente en mi caso la funcion Lambda es LoraHR.
 
-<img src="https://i.ibb.co/Kw1F5SW/image.png" width="1000">
+<img src="https://i.ibb.co/P1MdcrW/image.png" width="1000">
 
-- Done, we have finished creating the necessary services to use the lambda correctly, now we return to the lambda and copy the code in the Lambda Code folder and paste it into your Lambda.
+La forma de llamarla sera la siguiente.
 
-<img src="https://i.ibb.co/tC9h9KZ/image.png" width="1000">
+<img src="https://i.ibb.co/tstmGXK/image.png" width="1000">
 
-- The most important part of the code is the Thresholds, each of them was obtained from the following references.
+Lo demas lo dejaremos con su configuracion de Default y pasaremos a la pestaña de CORS para configurar el acceso de TTN a la funcion.
 
-- Max Accel Limit: https://web.archive.org/web/20170104164718/http://www.au.af.mil/au/aupress/digital/pdf/book/b_0113_brulle_engineering_space_age.pdf
-- Max Pressure on Flight: https://www.who.int/ith/mode_of_travel/cab/en/
-- Max Degrees: 45 degrees maximum static friction before the dog slips
-- Max Magnetic Field: https://www.who.int/peh-emf/publications/facts/fs322/en/
-- Min and Max, Temperature and Humidity: http://www.dartmouth.edu/~cushman/courses/engs44/comfort.pdf
+<img src="https://i.ibb.co/7p1HmKP/image.png" width="1000">
+
+Para facilidad de este tutorial configuraremos los CORS de la siguiente forma.
+
+<img src="https://i.ibb.co/3C2TFSr/image.png" width="1000">
+
+Una vez hecho esto vamos a la seccion de API para obtener el endpoint.
+
+<img src="https://i.ibb.co/fFtXDvp/image.png" width="1000">
+
+El endpoint de la API junto con la funcion sera el siguiente en mi caso.
+
+    https://XXXXXXXXXX.execute-api.us-east-1.amazonaws.com/PostHR
+
+Ya que tenemos este numero ahora si podemos crear la integracion en TTN.
+
+## TTN Integration:
+
+
+
 
 # IoT Things:
 
