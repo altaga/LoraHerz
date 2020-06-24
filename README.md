@@ -31,11 +31,11 @@ I will create a Post-hospital monitoring system based on communication Lora, for
 
 # Solution
 
-<img src="https://i.ibb.co/7X5ggQR/20200620-152247.jpg" width="1000">
+<img src="https://i.ibb.co/PFt6CLT/20200620-152247.jpg" width="1000">
 
 With this solution the patient will be able to track their recovery and a web app to see their progress, the doctor could have a database of their patients which can be made public to developers and doctors around the world by generating a public API. With AWS and also in the future with a lot of data, perform an AI that is capable of determining the recovery status of a patient using that data.
 
-<img src="https://i.ibb.co/gZ7pr1G/20200623-215406.jpg" width="1000">
+<img src="https://i.ibb.co/XpnyW2y/20200623-215406.jpg" width="1000">
  
 I use the Thunderboard Sense 2 to obtain all the environmental data from the multiple sensors it has and serve as a tracking of the patient's environment in their recovery, in order to rule out variables such as the weather to measure the patient's recovery
 
