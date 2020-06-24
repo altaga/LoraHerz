@@ -275,12 +275,23 @@ Ya que tenemos este numero ahora si podemos crear la integracion en TTN.
 
 ## TTN Integration:
 
+En nuestra aplicacion iremos a la seccion de integracion.
 
+<img src="https://i.ibb.co/wysJMwy/image.png" width="1000">
 
+Agregamos una nueva integracion de la siguiente forma.
+
+<img src="https://i.ibb.co/tsd1FLS/image.png" width="1000">
+
+Y listo si hiciste todo correctamente deberas de ver los datos llegar a AWS IoT de la siguiente forma.
+
+<img src="https://i.ibb.co/0QtLfrV/AWS-hr.png" width="1000">
+
+NOTA: los datos que dicen -48NaN son valores que manda la plataforma por Default, sin embargo estos seran filtrados en NodeRED, aunque si lo prefieres puedes realizar este filtrado desde la Lambda.
 
 # IoT Things:
 
-Since we have all our platform ready, we have to create the accesses to communicate with it. So we will have to create two Things in this case, the first is for our Helium Kit and the other will be for the NodeRed UI.
+Since we have all our platform ready, we have to create the accesses to communicate with it. So we will have to create two Things in this case, the first is for our RaspberryPi Gateway and the other will be for the NodeRed UI.
 
 - First we have to access our AWS console y look for the IoT core service:
 
@@ -349,7 +360,127 @@ Copy-paste the following text in the document and save it.
 
 <img src="https://i.ibb.co/mFKPxcY/image.png" width="600">
 
-- With this, we have the entire cloud backend of the project, so now we can focus on the frontend.
+- Save this files for later.
+
+# Thunderboard Setup:
+
+Por cuestion de software, la thunderboard ya viene con su bluetooth SDK, ademas de eso Silicon Labs ya provee una aplicacion para opder visualizar estos datos en un celular como se ve a continuacion.
+
+Board:
+
+<img src="https://i.ibb.co/yVMwPmq/20200624-142116.jpg" width="1000">
+
+Platform:
+
+<img src="https://i.ibb.co/12q7dws/image.png" width="250">
+
+El primer plan era utilizar la aplicacion como Gateway a Cloud para mandar los datos a AWS sin embargo esa caracteristica la eliminaron recientemente.
+
+<img src="https://i.ibb.co/N625QBh/image.png" width="1000">
+
+El segundo plan era realizar nuestra propia aplicacion de Android para realizar el Gateway, sin embargo no esta el SDK disponible aun.
+
+Asi que el plan final fue realizar a travez de una RaspberryPi Zero W una Gateway la cual leyera los datos por BLE y los mandara por WiFi a AWS IoT.
+
+Diagrama:
+
+<img src="https://i.ibb.co/84ygFvq/image.png" width="1000">
+
+Como primera parte del proceso de obtencion de datos, conectaremos la Thunderboard Sense 2 a la pc y con un monitor serial obtendremos su Bluetooth Mac ID.
+
+<img src="https://i.ibb.co/6mMKtgw/image.png" width="1000">
+
+Ya con ese numero pasaremos a configurar la raspberry.
+
+# RaspberryPi Setup:
+
+Download the operating system of the Raspberry Pi.
+
+- To download the operating system of the Raspberry enter the following link:
+- Link: https://www.raspberrypi.org/downloads/raspbian/
+- Download the lastest version.
+
+Flash the operating system in the SD.
+
+Software: https://www.balena.io/etcher/
+
+- Through Etcher flash the raspberry operating system but DO NOT put it inside the raspberry yet.
+
+Create a wpa_supplicant for the connection of the raspberry to the internet.
+
+- Since you have flashed the operating system, copy and paste the files from the "RaspberryPiFiles" folder directly into the SD card.
+- Then open the "wpa_supplicant.conf" file with a text editor
+- In between the quotes in the ssid line write your wifi network and in psk the network key.
+
+        country = us
+        update_config = 1
+        ctrl_interface =/var/run/wpa_supplicant
+
+        network =
+        {
+        scan_ssid = 1
+        ssid = "yourwifi"
+        psk = "yourpassword"
+        }
+
+
+- We save the changes and remove the SD from the PC.
+
+We then place the SD in the raspberry and connect it to its power source.
+
+- The power source of a Raspberry Pi is recommended to be from 5 volts to 2.5A minimum. We recommend the official ower supply for the Raspberry pi.
+
+Once the Raspberry has already started, we need to access it through SSH or with a keyboard and a monitor.
+
+- If you want to access it through SSH we need your IP.
+- In order to analyze your network and obtain the number we will have to use one of the following programs.
+- Advanced IP Scanner (Windows) or Angry IP Scanner program (Windows, Mac and Linux).
+- In the following image you can see how we got the Raspberry IP.
+
+<img src="https://i.ibb.co/q9BM6dP/image.png"> 
+
+Connect the raspberry with ssh.
+
+- To connect using ssh to the raspberry we need the Putty program.
+- Link: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+- This program will let us access the command console of the raspberry.
+- In Linux, just open the terminal and put the following command.
+
+        ssh pi@RASPBERRYIP
+
+<img src="https://i.ibb.co/PxP86Xz/terminal.png">
+
+- Password: “raspberry”
+
+<img src="https://i.ibb.co/QpWj18S/image.png">
+
+First, we will install the necessary libraries for our program to work.
+
+- For it to work we just have to input the following command.
+
+      sudo apt-get update
+      sudo apt-get install python3-pip libglib2.0-dev libatlas-base-dev git -y
+      sudo pip3 install bluepy Crypto crc16 paho-mqtt
+
+- Copia la carpeta de "Rpi Software" en la raspberry y pega los certificados que creamos antes dentro de la subcarpeta "Certs".
+
+NOTA: puedes renombrar los certificados como estan en la imagen si no quieres editarlos en el codigo.
+
+<img src="https://i.ibb.co/WyvkR12/image.png">
+
+Dentro de el archivo main.py configura tu AWS IoT Core Endpoint correctamente.
+
+<img src="https://i.ibb.co/dfPpmb7/image.png">
+
+Si todo el proceso anterior lo realizaste correctamente corre el siguiente codigo para empezar a mandar datos a AWS IoT.
+
+    sudo python3 main.py YOURMAC
+
+Los datos deberan verse de la siguiente forma.
+
+<img src="https://i.ibb.co/0svMP3W/Capture.png" width="600">
+
+Ya que tenemos todo el backend de hardware y cloud configurados, configuraremos el frontend en Node-RED
 
 # Node-Red Setup:
 
@@ -368,7 +499,7 @@ Copy-paste the following text in the document and save it.
 
 - Once that is done we will edit the MQTT node to enter our credentials.
 
-<img src = "https://i.ibb.co/SyM0X7S/image.png" width = "600">
+<img src = "https://i.ibb.co/G9Rby7J/image.png" width = "600">
 
 - Set Server and Port.
 
@@ -380,21 +511,35 @@ Copy-paste the following text in the document and save it.
 
 <img src = "https://i.ibb.co/nMgtkRN/image.png" width = "600">
 
+- Select the correct topic in each MQTT nodes.
+
+<img src = "https://i.ibb.co/rxMNZRN/image.png" width = "600">
+
+- In my case:
+    - /Device1/EnvironmentData
+    - /Device1/HR
+
 - If everything works fine press the "Deploy" button and enter the following URL to check the Dashboard.
 
 http://localhost:1880/ui
 
-<img src = "https://i.ibb.co/SKPbtM3/image.png" width = "800">
+Desktop:
 
-- The device's real-time location map is at:
+<img src = "https://i.ibb.co/sFq9rM5/image.png" width = "800">
 
-http://localhost:1880/worldmap/
+Mobile:
 
-<img src = "https://i.ibb.co/ydhWQVs/image.png" width = "800">
+<img src = "https://i.ibb.co/zxx98Kt/Screenshot-20200624-154958-Red-Mobile.jpg" width = "200">
+<img src = "https://i.ibb.co/NnQmmXg/Screenshot-20200624-155001-Red-Mobile.jpg" width = "200">
+<img src = "https://i.ibb.co/vkmF5wk/Screenshot-20200624-155006-Red-Mobile.jpg" width = "200">
+
+
+
+
 
 ### Explanation for nodes:
 
-- This node receives the broker's payloads, filters according to the sensor which graph it has to go to and sends it to graph and deploy the adress in the world map.
+- This node receives the broker's payloads, filters according to the sensor which graph it has to go to and sends it to graph and deploy.
 
 <img src = "https://i.ibb.co/DD4WD7v/image.png" width = "800">
 
