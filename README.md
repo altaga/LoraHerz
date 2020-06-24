@@ -529,13 +529,7 @@ Desktop:
 
 Mobile:
 
-<img src = "https://i.ibb.co/zxx98Kt/Screenshot-20200624-154958-Red-Mobile.jpg" width = "200">
-<img src = "https://i.ibb.co/NnQmmXg/Screenshot-20200624-155001-Red-Mobile.jpg" width = "200">
-<img src = "https://i.ibb.co/vkmF5wk/Screenshot-20200624-155006-Red-Mobile.jpg" width = "200">
-
-
-
-
+<img src = "https://i.ibb.co/zxx98Kt/Screenshot-20200624-154958-Red-Mobile.jpg" width = "200"><img src = "https://i.ibb.co/NnQmmXg/Screenshot-20200624-155001-Red-Mobile.jpg" width = "200"><img src = "https://i.ibb.co/vkmF5wk/Screenshot-20200624-155006-Red-Mobile.jpg" width = "200">
 
 ### Explanation for nodes:
 
