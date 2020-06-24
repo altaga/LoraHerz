@@ -541,28 +541,11 @@ Mobile:
 
 - This node receives the broker's payloads, filters according to the sensor which graph it has to go to and sends it to graph and deploy.
 
-<img src = "https://i.ibb.co/DD4WD7v/image.png" width = "800">
+<img src = "https://i.ibb.co/cbbM76V/image.png" width = "800">
 
 # Product:
 
-<img src="https://i.ibb.co/XxL85ZT/20200609-003412.jpg" width="1000">
-<img src="https://i.ibb.co/gJrrtx1/20200609-003442.jpg" width="1000">
-
-All the solution in action:
-
-<img src = "https://i.ibb.co/b3jg4Sj/ezgif-com-video-to-gif-2.gif" width = "800">
-
-UI:
-
-http://localhost:1880/ui
-
-<img src = "https://i.ibb.co/SKPbtM3/image.png" width = "800">
-
-- The device's real-time location map is at:
-
-http://localhost:1880/worldmap/
-
-<img src = "https://i.ibb.co/ydhWQVs/image.png" width = "800">
+<img src="https://i.ibb.co/2yfQx8K/20200623-215317.jpg" width="1000">
 
 # Demo:
 
@@ -570,7 +553,7 @@ This my DEMO:
 
 Video: Click on the image:
 
-[![Demo](https://i.ibb.co/Tbq1r7Y/Logo.png)](https://youtu.be/m8bSZlNu_z4)
+[![Demo](https://i.ibb.co/Sy6K5F4/Logo.png)](Pendiente)
 
 Sorry github does not allow embed videos.
 
