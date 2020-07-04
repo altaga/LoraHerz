@@ -7,7 +7,7 @@ LoraWAN, HeartRate and Enviroment Monitor
 
 Lora tracking:
 
-I will create a Post-hospital monitoring system based on communication Lora, for patients who suffered Covid-19 (but can be adapted to any disease afterwards), the solution will track the patient's heart rate using an ECG sensor. It has been shown that worldwide those with pre-existing conditions such as cardiac disease are the ones with more risk.
+I create a Pre-Post-hospital monitoring system based on communication Lora, for patients who suffered Covid-19 (but can be adapted to any disease afterwards), the solution will track the patient's heart rate using an ECG sensor. It has been shown that worldwide those with pre-existing conditions such as cardiac disease are the ones with more risk.
 
 <img src="https://i.ibb.co/d5WZpp7/image.png" width="1000">
 
